@@ -1,8 +1,3 @@
-@font-face {
-  font-family: 'ZCOOL KuaiLe';
-  src: url("/font/ZCOOLKuaiLe-Regular-subfont.ttf");
-}
-
 body {
     margin: 0;
     padding: 0;
@@ -78,14 +73,17 @@ body {
     font-size: 2.5em;
     font-weight: normal;
     cursor: default;
-    font-family: 'ZCOOL KuaiLe', cursive;
+    font-family: 'ZCOOL XiaoWei', cursive;
   }
   .description {
+    margin-top: 5px;
+    margin-bottom: 10px;
     color: whitesmoke;
-    font-size: larger;
+    font-size: 1.3em;
     cursor: default;
-    font-family: 'ZCOOL KuaiLe', cursive;
+    font-family: 'ZCOOL XiaoWei', cursive;
   }
+
   /*icon图标*/
   .links a {
     padding: 0 5px;

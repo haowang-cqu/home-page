@@ -12,8 +12,11 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
     <link rel="manifest" href="/favicon/site.webmanifest">
-    <link rel="stylesheet" href="//at.alicdn.com/t/font_2401184_r5u7ahximl.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_2401184_lv84cfi2cs.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=ZCOOL+XiaoWei&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/main.css">
+    <script src="/js/lib/typed.min.js"></script>
 <body>
 <div class="wrapper">
     <div class="main">
@@ -24,12 +27,18 @@
                 </div>
                 <div class="name">哇哈爱吃糖</div>
                 <div class="description">
-                        <p>努力写代码只想换糖吃</p>
+                    <div id="typed-strings">
+                        <span id="hitokoto">努力写代码只想换糖吃^_^</span>
+                    </div>
+                    <span id="typed"></span>
                 </div>
                 <div class="links">
-                    
                     <a class="link-item" href="mailto:iamwh.cn@gmail.com" target="_blank" rel="noopener" title="Email">
                         <i class="iconfont icon-emailFilled"></i>
+                    </a>
+
+                    <a class="link-item" href="https://t.me/iamwhcn" target="_blank" rel="noopener" title="Telegram">
+                        <i class="iconfont icon-telegram"></i>
                     </a>
 
                     <a class="link-item" href="https://github.com/iamwhcn" target="_blank" rel="noopener" title="GitHub">
@@ -57,18 +66,37 @@
 </div>
 
 <script>
-        var date = new Date()
-        var year = date.getFullYear();
-        var Copyright = "2021";
-        if(year != Copyright){
-            if(Copyright==""){
-                document.getElementById("time").innerHTML += year;
-            }else{
-                document.getElementById("time").innerHTML += "2021 - "+year;
-            }
-        }else{
+    var date = new Date()
+    var year = date.getFullYear();
+    var Copyright = "2021";
+    if(year != Copyright){
+        if(Copyright==""){
             document.getElementById("time").innerHTML += year;
+        }else{
+            document.getElementById("time").innerHTML += "2021 - "+year;
         }
+    }else{
+        document.getElementById("time").innerHTML += year;
+    }
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('get', 'https://v1.hitokoto.cn?c=d&c=k');
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+            var data = JSON.parse(xhr.responseText);
+            var hitokoto = document.getElementById('hitokoto');
+            hitokoto.innerText = data.hitokoto;
+            var typed = new Typed('#typed', {
+                stringsElement: '#typed-strings',
+                typeSpeed: 80,
+                backSpeed: 30,
+                backDelay: 2000,
+                loop: true,
+                loopCount: Infinity
+            });
+        }
+    }
+    xhr.send();
 </script>
 </body>
 </html>
